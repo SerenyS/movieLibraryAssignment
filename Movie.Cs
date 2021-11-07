@@ -10,13 +10,13 @@ using System.Linq;
 
 namespace movieLibraryAssignment
 {
-    public class Movie:LibraryItem {
+    public class Movie:LibraryItem,IMedia {
 
         public string Genres { get; set;}
         private static string File = "movies.csv";
         
      
-        public override void Read()
+        public void Read()
         {
             Console.WriteLine("How many movie do you want to be displayed? ");
             int numberOfMovies = Int32.Parse(Console.ReadLine());
@@ -32,7 +32,7 @@ namespace movieLibraryAssignment
         }
         
 
-        public override void Write()
+        public  void Write()
         {
             ItemID = getLastID() + 1;
             StreamWriter sw = new StreamWriter(File, true);
@@ -54,6 +54,22 @@ namespace movieLibraryAssignment
             } while (option == "Y");
             
             string newGenres =  string.Join("|", genres); 
+
+            //ask about how to serialize with current code. 
+
+            // Product product = new Product();
+            //     product.Name = "Apple";
+            //     product.Expiry = new DateTime(2008, 12, 28);
+            //     product.Sizes = new string[] { "Small" };
+
+            // Movie movie = new Movie();
+            // //     movie.Title = 
+
+
+
+            // string json = JsonConvert.SerializeObject(product);
+
+
             sw.WriteLine("{0},{1},{2}", ItemID, movieTitle, newGenres);
             sw.Close();
         }

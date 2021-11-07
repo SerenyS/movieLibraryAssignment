@@ -11,13 +11,13 @@ using System.Collections.Generic;
 using System.Linq;
 namespace movieLibraryAssignment
 {
-    public class Show:LibraryItem {
+    public class Show:LibraryItem,IMedia{
         public int Season { get; set; } 
         public int Episode { get; set; } 
         public string[] Writers { get; set; }
         public static string File = "shows.csv";
 
-        public override void Read()
+        public  void Read()
         {
             Console.WriteLine("How many shows do you want to be displayed? ");
             int numberOfShows = Int32.Parse(Console.ReadLine());
@@ -32,7 +32,7 @@ namespace movieLibraryAssignment
             reader.Close();
         }
 
-        public override void Write()
+        public void Write()
         {
             ItemID = getLastID() + 1;
             StreamWriter sw = new StreamWriter(File, true);

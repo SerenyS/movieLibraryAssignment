@@ -12,13 +12,13 @@ using System.Linq;
 
 namespace movieLibraryAssignment
 {
-    public class Video:LibraryItem{
+    public class Video:LibraryItem,IMedia{
         public string Format { get; set; } 
         public int Length { get; set; } 
         public int[] Regions { get; set; } 
         public static string File = "videos.csv";
 
-        public override void Read()
+        public  void Read()
         {
             Console.WriteLine("How many videos do you want to be displayed? ");
             int numberOfVideos = Int32.Parse(Console.ReadLine());
@@ -33,7 +33,7 @@ namespace movieLibraryAssignment
             reader.Close();
         }
 
-        public override void Write()
+        public void Write()
         {
             ItemID = getLastID() + 1;
             StreamWriter sw = new StreamWriter(File, true);
